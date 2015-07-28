@@ -1,0 +1,109 @@
+::selection{
+	background: rgba(255, 200, 0, 0.4);
+}
+
+::-moz-selection {
+	background: rgba(255, 200, 0, 0.4);
+}
+
+/* Yekan Font by: Bayan.ir */
+@font-face {
+	font-family: 'Yekan';
+	src: url('../fonts/BYekan.eot');
+	src: url('../fonts/BYekan.eot#iefix') format('embedded-opentype'),
+	url('../fonts/BYekan.woff') format('woff'),
+	url('../fonts/BYekan.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+html {
+  direction: rtl;
+}
+
+body {
+  text-align: right;
+  font-family: Yekan, Tahoma;
+  line-height: 1.4;
+  background: #eee;
+}
+
+h1 {
+  font-weight: normal;
+  font-size: 32px;
+  text-align: center;
+}
+
+section {
+  margin: auto;
+  max-width: 1000px;
+  width: 95%;
+  background: #fff;
+  padding: 25px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+table {
+  width: 100%;
+  font-size: 14px;
+  border-spacing: 0;
+}
+
+th {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  font-weight: normal;
+  text-align: center;
+  font-weight: bold;
+}
+
+td {
+  padding: 15px 10px;
+  border-bottom: 1px solid #eee;
+  border-left: 1px solid #eee;
+}
+
+td:last-child {
+  border-left: none;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+.name {
+  text-align: right;
+}
+
+.rank {
+  width: 30px;
+  text-align: center;
+}
+
+.problem {
+  width: 40px;
+  text-align: center;
+}
+
+.score {
+  width: 60px;
+  text-align: center;
+  font-weight: bold;
+}
+
+td.score, .problem {
+  font-family: Verdana;
+}
+
+.grade {
+  display: inline-block;
+  background: #3498db;
+  color: #fff;
+  padding: 1px 5px;
+  font-size: 10px;
+  border-radius: 3px;
+  position: relative;
+}
+
+tr:hover td {
+  background: #f7f7f7;
+}

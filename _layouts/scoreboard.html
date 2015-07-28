@@ -1,0 +1,54 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+  <title>رتبه بندی - {{ page.title }}</title>
+  <link href="/style/scoreboard.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+  <section>
+    <h1> رتبه‌بندی - {{ page.title }}</h1>
+    <table>
+      <tr class="head">
+        <th class="rank">#</th>
+        <th class="name">نام</th>
+        <th class="score">مجموع</th>
+        {% for problem in page.problems %}
+          <th class="problem">{{ problem }}</th>
+        {% endfor %}
+      </tr>
+      {% assign l = 0 %}
+      {% assign lastScore = -1 %}
+      {% assign users = (page.users|sort: 'score') %}
+      {% for user in users reversed %}
+        {% if user.score != lastScore %}
+          {% assign userRank = forloop.index %}
+          {% assign lastScore = user.score %}
+        {% endif %}
+        <tr>
+          <td class="rank"> {{ userRank}}
+          </td>
+          <td> {{ user.name }}
+          <span class="grade">
+            پایه‌ی
+            {% if user.grade == 1 %}
+              اول
+            {% endif %}
+            {% if user.grade == 2 %}
+              دوم
+            {% else %}
+              سوم
+            {% endif %}
+          </span>
+</td>
+          <td class="score">
+            {{ user.score }}
+          </td>
+          {% for problem in user.problems %}
+            <td class="problem">{{ problem }}</td>
+          {% endfor %}
+        </tr>
+      {% endfor %}
+    </table>
+  </section>
+</body>
+</html>
