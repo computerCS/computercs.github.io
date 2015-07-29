@@ -42,9 +42,6 @@
           </span>
 </td>
           <td class="score">
-            {% for problem in user.problems %}
-              {% capture temp_var %}{% increment user.score %}{% endcapture %}
-            {% endfor %}
             {{user.score}}
           </td>
           {% for problem in user.problems %}
