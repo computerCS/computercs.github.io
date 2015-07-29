@@ -40,9 +40,9 @@
             {% endif %}
           </span>
 </td>
-            {assign userscore=0}
+            {% assign userscore=0 %}
             {% for problem in user.problems %}
-              { userscore=userscore+problem }</td>
+              {% userscore=userscore+problem %}</td>
             {% endfor %}
 
           <td class="score">
