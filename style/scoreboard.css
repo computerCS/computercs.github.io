@@ -118,3 +118,9 @@ tr:hover td {
     color: #2ecc71;
     font-style: italic;
 }
+
+.scoreboard-notfound {
+    text-align: center;
+    font-size: 24px;
+    color: #0d0d0d;
+}
