@@ -23,39 +23,47 @@
 			</th>
 			{% endfor %}
 		</tr>
-		{% assign lastScore = -1 %}
-		{% assign users = (page.users|sort: 'score') %}
-		{% for user in users reversed %}
-		{% if user.score != lastScore %}
-		{% assign userRank = forloop.index %}
-		{% assign lastScore = user.score %}
-		{% endif %}
-		<tr>
-			<td class="rank">
-				{{ userRank }}
-			</td>
-			<td>
-				{{ user.name }}
-			  <span class="grade">
-				پایه‌ی
-				{% if user.grade == 1 %}
-				  اول
-				{% endif %}
-				{% if user.grade == 2 %}
-				  دوم
-				{% else %}
-				  سوم
-				{% endif %}
-			  </span>
-			</td>
-			<td class="score{% if user.score == maxScore %} full{% endif %}">
-				{{ user.score }}
-			</td>
-			{% for problem in user.problems %}
-			<td class="problem{% if problem == page.problems[forloop.index0].score %} full{% endif %}">{{ problem }}</td>
+		{% if page.users.size != null %}
+			{% assign lastScore = -1 %}
+			{% assign users = (page.users|sort: 'score') %}
+			{% for user in users reversed %}
+			{% if user.score != lastScore %}
+			{% assign userRank = forloop.index %}
+			{% assign lastScore = user.score %}
+			{% endif %}
+			<tr>
+				<td class="rank">
+					{{ userRank }}
+				</td>
+				<td>
+					{{ user.name }}
+				  <span class="grade">
+					پایه‌ی
+					{% if user.grade == 1 %}
+					  اول
+					{% endif %}
+					{% if user.grade == 2 %}
+					  دوم
+					{% else %}
+					  سوم
+					{% endif %}
+				  </span>
+				</td>
+				<td class="score{% if user.score == maxScore %} full{% endif %}">
+					{{ user.score }}
+				</td>
+				{% for problem in user.problems %}
+				<td class="problem{% if problem == page.problems[forloop.index0].score %} full{% endif %}">{{ problem }}</td>
+				{% endfor %}
+			</tr>
 			{% endfor %}
-		</tr>
-		{% endfor %}
+		{% else %}
+			<tr>
+				<td colspan="{{ 3|plus:page.problems.size }}" class="scoreboard-notfound">
+					رده‌بندی فعلا در دسترس نیست!
+				</td>
+			</tr>
+		{% endif %}
 	</table>
 </section>
 </body>
