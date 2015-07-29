@@ -84,6 +84,11 @@ tr:last-child td {
   text-align: center;
 }
 
+.problem a {
+	text-decoration: none;
+	color: #2980b9;
+}
+
 .score {
   width: 60px;
   text-align: center;

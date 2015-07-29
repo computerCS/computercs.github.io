@@ -13,36 +13,40 @@
         <th class="name">نام</th>
         <th class="score">مجموع</th>
         {% for problem in page.problems %}
-          <th class="problem">{{ problem }}</th>
+          <th class="problem">
+            <a href="{{ problem.url }}" target="_blank" title=" {{ problem.score }} امتیاز">
+              {{ problem.name }}
+            </a>
+          </th>
         {% endfor %}
       </tr>
-      {% assign l = 0 %}
       {% assign lastScore = -1 %}
       {% assign users = (page.users|sort: 'score') %}
       {% for user in users reversed %}
-      {% assign user.score=0 %}
         {% if user.score != lastScore %}
           {% assign userRank = forloop.index %}
           {% assign lastScore = user.score %}
         {% endif %}
         <tr>
-          <td class="rank"> {{ userRank}}
+          <td class="rank">
+			{{ userRank }}
           </td>
-          <td> {{ user.name }}
-          <span class="grade">
-            پایه‌ی
-            {% if user.grade == 1 %}
-              اول
-            {% endif %}
-            {% if user.grade == 2 %}
-              دوم
-            {% else %}
-              سوم
-            {% endif %}
-          </span>
-</td>
+          <td>
+			{{ user.name }}
+			  <span class="grade">
+				پایه‌ی
+				{% if user.grade == 1 %}
+				  اول
+				{% endif %}
+				{% if user.grade == 2 %}
+				  دوم
+				{% else %}
+				  سوم
+				{% endif %}
+			  </span>
+		  </td>
           <td class="score">
-            {{user.score}}
+            {{ user.score }}
           </td>
           {% for problem in user.problems %}
             <td class="problem">{{ problem }}</td>
