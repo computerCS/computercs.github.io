@@ -20,6 +20,7 @@
       {% assign lastScore = -1 %}
       {% assign users = (page.users|sort: 'score') %}
       {% for user in users reversed %}
+      {% assign user.score=0 %}
         {% if user.score != lastScore %}
           {% assign userRank = forloop.index %}
           {% assign lastScore = user.score %}
