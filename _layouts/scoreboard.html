@@ -1,38 +1,41 @@
 <!doctype html>
+<html dir="rtl" lang="fa">
 <head>
-  <meta charset="utf-8">
-  <title>رتبه بندی - {{ page.title }}</title>
-  <link href="/style/scoreboard.css" rel="stylesheet" type="text/css">
+	<meta charset="utf-8">
+	<title>رتبه بندی - {{ page.title }}</title>
+	<link href="/style/scoreboard.css?lastEdit=2015-07-29--19-39" rel="stylesheet" type="text/css">
 </head>
 <body>
-  <section>
-    <h1> رتبه‌بندی - {{ page.title }}</h1>
-    <table>
-      <tr class="head">
-        <th class="rank">#</th>
-        <th class="name">نام</th>
-        <th class="score">مجموع</th>
-        {% for problem in page.problems %}
-          <th class="problem">
-            <a href="{{ problem.url }}" target="_blank" title=" {{ problem.score }} امتیاز">
-              {{ problem.name }}
-            </a>
-          </th>
-        {% endfor %}
-      </tr>
-      {% assign lastScore = -1 %}
-      {% assign users = (page.users|sort: 'score') %}
-      {% for user in users reversed %}
-        {% if user.score != lastScore %}
-          {% assign userRank = forloop.index %}
-          {% assign lastScore = user.score %}
-        {% endif %}
-        <tr>
-          <td class="rank">
-			{{ userRank }}
-          </td>
-          <td>
-			{{ user.name }}
+{% assign maxScore = 0 %}
+<section>
+	<h1> رتبه‌بندی - {{ page.title }}</h1>
+	<table>
+		<tr class="head">
+			<th class="rank">#</th>
+			<th class="name">نام</th>
+			<th class="score">مجموع</th>
+			{% for problem in page.problems %}
+			{% assign maxScore = maxScore|plus:problem.score %}
+			<th class="problem">
+				<a href="{{ problem.url }}" target="_blank" title=" {{ problem.score }} امتیاز">
+					{{ problem.name }}
+				</a>
+			</th>
+			{% endfor %}
+		</tr>
+		{% assign lastScore = -1 %}
+		{% assign users = (page.users|sort: 'score') %}
+		{% for user in users reversed %}
+		{% if user.score != lastScore %}
+		{% assign userRank = forloop.index %}
+		{% assign lastScore = user.score %}
+		{% endif %}
+		<tr>
+			<td class="rank">
+				{{ userRank }}
+			</td>
+			<td>
+				{{ user.name }}
 			  <span class="grade">
 				پایه‌ی
 				{% if user.grade == 1 %}
@@ -44,16 +47,16 @@
 				  سوم
 				{% endif %}
 			  </span>
-		  </td>
-          <td class="score">
-            {{ user.score }}
-          </td>
-          {% for problem in user.problems %}
-            <td class="problem">{{ problem }}</td>
-          {% endfor %}
-        </tr>
-      {% endfor %}
-    </table>
-  </section>
+			</td>
+			<td class="score{% if user.score == maxScore %} full{% endif %}">
+				{{ user.score }}
+			</td>
+			{% for problem in user.problems %}
+			<td class="problem{% if problem == page.problems[forloop.index0].score %} full{% endif %}">{{ problem }}</td>
+			{% endfor %}
+		</tr>
+		{% endfor %}
+	</table>
+</section>
 </body>
 </html>
