@@ -42,7 +42,6 @@
 </td>
 
           <td class="score">
-            {% assign userscore=0 %}
             {% for problem in user.problems %}
               {% capture temp_var %}{% increment userscore %}{% endcapture %}
             {% endfor %}
