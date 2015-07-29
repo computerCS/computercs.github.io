@@ -55,13 +55,14 @@
 			<td class="problem{% if problem == page.problems[forloop.index0].score %} full{% endif %}">{{ problem }}</td>
 			{% endfor %}
 		</tr>
-		{% else %}
+		{% endfor %}
+		{% if page.users.size == null %}
 			<tr>
 				<td colspan="{{ 3|plus:page.problems.size }}" class="scoreboard-notfound">
 					رده‌بندی فعلا در دسترس نیست!
 				</td>
 			</tr>
-		{% endfor %}
+		{% endif %}
 	</table>
 </section>
 </body>
