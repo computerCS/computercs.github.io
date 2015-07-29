@@ -44,8 +44,7 @@
           <td class="score">
             {% assign userscore=0 %}
             {% for problem in user.problems %}
-              {% assign tuserscore=userscore+problem %}
-              {% assign userscore=tuserscore %}
+              {% increment userscore %}
             {% endfor %}
             {{userscore}}
           </td>
