@@ -40,13 +40,8 @@
             {% endif %}
           </span>
 </td>
-
           <td class="score">
-            {% assign userscore=0 %}
-            {% for problem in user.problems %}
-              {% increment userscore %}
-            {% endfor %}
-            {{userscore}}
+            {{ user.score }}
           </td>
           {% for problem in user.problems %}
             <td class="problem">{{ problem }}</td>
